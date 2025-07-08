@@ -10,6 +10,6 @@ public interface TaskService {
 
     MyTask createTask(MyTask task);
     List<MyTask> getAllTasks();
-    void deleteTask();
-    MyTask toggleComplete();
+    void deleteTask(MyTask myTask);
+    boolean toggleCompleted(Long id);
 }
