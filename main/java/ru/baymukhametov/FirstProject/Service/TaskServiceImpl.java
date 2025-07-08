@@ -1,12 +1,10 @@
 package ru.baymukhametov.FirstProject.Service;
 
-import org.springframework.scheduling.config.Task;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.baymukhametov.FirstProject.Entity.MyTask;
 import ru.baymukhametov.FirstProject.Repository.TaskRepository;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -29,15 +27,15 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteTask(MyTask myTask) {
-        taskRepository.delete(myTask);
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);
     }
     @Override
-    public boolean toggleCompleted(Long taskId) {
+    public MyTask toggleCompleted(Long taskId) {
         MyTask task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
         task.setCompleted(!task.isCompleted());
-        taskRepository.save(task);
-        return task.isCompleted();
+        taskRepository.deleteById(taskId);
+        return task;
     }
 }
