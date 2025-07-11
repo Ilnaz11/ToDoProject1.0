@@ -35,7 +35,6 @@ public class TaskServiceImpl implements TaskService {
         MyTask task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
         task.setCompleted(!task.isCompleted());
-        taskRepository.deleteById(taskId);
-        return task;
+        return taskRepository.save(task);
     }
 }

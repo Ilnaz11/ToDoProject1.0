@@ -18,9 +18,8 @@ public class TaskController {
     }
 
     @PostMapping("/")
-    public MyTask createTask(MyTask task) {
-        return task = taskService.createTask(task);
-
+    public MyTask createTask(@RequestBody MyTask task) {
+        return taskService.createTask(task);
     }
 
     @GetMapping
@@ -28,14 +27,12 @@ public class TaskController {
         return taskService.getAllTasks();
     }
 
-
     @DeleteMapping("/{id}")
-    public void deleteTask(Long id) {
+    public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
     }
 
-
-    @PutMapping
+    @PutMapping("/{id}/t")
     public MyTask toggleComplete(@PathVariable Long id) {
         return taskService.toggleCompleted(id);
     }
