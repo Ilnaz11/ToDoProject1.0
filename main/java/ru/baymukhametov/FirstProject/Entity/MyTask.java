@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Setter;
 
 @Entity
 public class MyTask {
@@ -12,6 +13,7 @@ public class MyTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
+    @Setter
     private boolean completed;
 
     public MyTask(String description, boolean completed) {
@@ -31,7 +33,4 @@ public class MyTask {
         return description;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = this.completed;
-    }
 }
